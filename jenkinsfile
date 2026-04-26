@@ -19,6 +19,7 @@ pipeline {
         stage('Setup Python Environment') {
             steps {
                 echo '🐍 Creating virtual environment...'
+                sh 'sudo apt install python3-venv -y'
                 sh """
                     ${PYTHON} -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
@@ -32,8 +33,7 @@ pipeline {
         stage('Build WHL Package') {
             steps {
                 echo '📦 Building wheel package...'
-                sh 'sudo apt install python3-venv -y'
-                sh """
+                                sh """
                     . ${VENV_DIR}/bin/activate
                     python -m build
                 """
