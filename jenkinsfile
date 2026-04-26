@@ -32,6 +32,7 @@ pipeline {
         stage('Build WHL Package') {
             steps {
                 echo '📦 Building wheel package...'
+                sh 'sudo apt install python3-venv -y'
                 sh """
                     . ${VENV_DIR}/bin/activate
                     python -m build
